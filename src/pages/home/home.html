@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-    <div style="height: 50%; width: 100%" id="map_canvas"></div>
+    <div style="height: 50%; width: 100%" #map id="map_canvas"></div>
 
     <ion-list>
         <div *ngIf="arrayOrder">
@@ -16,14 +16,14 @@
                 <ion-card>
 
                     <ion-fab right top>
-                        <button ion-fab>
+                        <button ion-fab (click)='calculateAndDisplayRoute()'>
   <ion-icon name="pin"></ion-icon>
 </button>
                     </ion-fab>
 
                     <ion-item>
                         <ion-icon name="locate" item-start large></ion-icon>
-                        <h2>{{order}}</h2>
+                        <h2>{{order.nameUser}}</h2>
                         <p>{{order.address}}</p>
                     </ion-item>
                     <ion-item>
@@ -33,7 +33,11 @@
                         <h2 *ngIf="order.status == true" style="text-decoration-color: blue">Đã hoàn thành</h2>
                     </ion-item>
                     <ion-item>
-                        <span item-left>18 min</span>
+                        <ion-icon name="locate" item-start large></ion-icon>
+                        <h2>{{order.distance}}</h2>
+                    </ion-item>
+                    <ion-item>
+                        <span item-left>{{order.duration}}</span>
                         <button ion-button icon-left clear item-end (click)='openModal(order)'>
   <ion-icon name="navigate"></ion-icon>
   Chi tiết
